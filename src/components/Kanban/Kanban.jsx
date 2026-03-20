@@ -1,22 +1,22 @@
 import { Heart, ReceiptRussianRuble } from 'lucide-react';
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 
 function Kanban() {
-    const [columns, setColumns] = useState({
+    const [columns, setColumns] = useState(() => {
+        const saved = localStorage.getItem("kanbanColumns");
+        return saved ? JSON.parse(saved) : {
         todo:{ 
             name:"To do", 
             items:[
-                {id:'1', content:"Market Research"},
-                {id:'2' , content:"Market Research"},
-                {id:'3' , content:"Market Research"},
+                
 
             ]
         }, 
         inProgress:{ 
             name:"In Progress", 
             items: [
-                {id:'4', content:"Design UI "},
-            
+                
+        
 
             ]
 
@@ -25,13 +25,18 @@ function Kanban() {
         done:{ 
             name:"Done", 
             items: [
-                {id:'5', content:"Push to Git"},
+    
                
 
             ]
-        }
+        } 
+    }
 
     })
+
+    useEffect(()=> { 
+        localStorage.setItem("kanbanColumns", JSON.stringify(columns))
+    },[columns])
 
     const [newTask, setNewTask] = useState("");
     const [activeColumn, setActiveColumn] = useState("todo")
@@ -132,7 +137,7 @@ function Kanban() {
 
                     <button onClick={addNewTask}
                     className='px-6 bg-gradient-to-r from-yellow-600 to-amber-500 text-white font-medium hover:from-yellow-500 hover:to-amber-400 transition-all duration-200 cursor-pointer'
-                    ></button>
+                    >Add</button>
                 </div>
 
                 <div className='flex gap-6 overflow-x-auto pb-6 w-full'>
