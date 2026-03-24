@@ -106,7 +106,7 @@ function Kanban() {
 
   return (
     <>
-      <div className="p-6 w-full min-h-screen bg-gradient-to-b from-zinc-900 to-zinc-800 flex items-center justify-center">
+      <div className="px-30 w-full min-h-screen bg-gradient-to-b from-zinc-900 to-zinc-800 flex items-center justify-center">
         <div className="flex items-center justify-center flex-col gap-4 w-full max-w-full-6xl">
           <h1 className="text-6xl font-bold mb-8 text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-amber-500 to-rose-400 ">
             Kanban Board
