@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 
 function Kanban() {
   const [selectedTask, setSelectedTask] = useState(null);
+
+
   const [columns, setColumns] = useState(() => {
     const saved = localStorage.getItem("kanbanColumns");
     return saved
@@ -240,6 +242,30 @@ function Kanban() {
                                 />
                               </div>
 
+
+                              <div>
+                                <label className="text-xs font-bold text-amber-500 uppercase tracking-widest">
+                                  The Title 
+                                </label>
+                                <input
+                                  className="w-full bg-zinc-800 border border-zinc-700 p-3 rounded-lg text-white mt-2"
+                                  value={selectedTask.title}
+                                  onChange={(e) => {
+                                    const val = e.target.value;
+                                    setSelectedTask({
+                                      ...selectedTask,
+                                      title: val,
+                                    });
+                                    updateTaskDetails(
+                                      selectedTask.columnId,
+                                      selectedTask.id,
+                                      { title: val },
+                                    );
+                                  }}
+                                />
+                              </div>
+                              
+
                               <div>
                                 <label className="text-xs font-bold text-blue-400 uppercase tracking-widest">
                                   The Hook (Hook Laboratory)
@@ -267,28 +293,53 @@ function Kanban() {
 
                               <div>
                                 <label className="text-xs font-bold text-blue-400 uppercase tracking-widest">
-                                  The Main Concept
+                                  The Description 
                                 </label>
                                 <textarea
                                   placeholder="Start with the main idea..."
                                   className="w-full bg-zinc-800 border border-zinc-700 p-4 rounded-lg text-white mt-2 h-32 resize-none"
-                                  value={selectedTask.hook || ""}
+                                  value={selectedTask.description || ""}
                                   onChange={(e) => {
                                     const val = e.target.value;
                                     setSelectedTask({
                                       ...selectedTask,
-                                      hook: val,
+                                      description: val,
                                     });
                                     updateTaskDetails(
                                       selectedTask.columnId,
                                       selectedTask.id,
-                                      { hook: val },
+                                      { description: val },
                                     );
                                   }}
 
                                 
                                 />
                               </div>
+
+                              <div>
+                                <label className="text-xs font-bold text-amber-500 uppercase tracking-widest">
+                                  tags 
+                                </label>
+                                <input
+                                  className="w-full bg-zinc-800 border border-zinc-700 p-3 rounded-lg text-white mt-2"
+                                  value={selectedTask.tags}
+                                  onChange={(e) => {
+                                    const val = e.target.value;
+                                    setSelectedTask({
+                                      ...selectedTask,
+                                      tags: val,
+                                    });
+                                    updateTaskDetails(
+                                      selectedTask.columnId,
+                                      selectedTask.id,
+                                      { tags: val },
+                                    );
+                                  }}
+                                />
+                              </div>
+
+
+                              
 
                               <div className="mt-auto">
                                 <button
