@@ -9,7 +9,6 @@ function App() {
   return (
     <>
     <Kanban/>
-      <h1 className='font-[font1]'>Personal Brand System</h1>
     </>
   )
 }
